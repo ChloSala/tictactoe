@@ -26,11 +26,41 @@ int getWinner(int table[]) {
   return 3;
 }
 
+void printDataLine(int lineIndex, int table[9]) {
+  for (int i = 0; i < 3; i++) {
+    cout << " " << table[lineIndex * 3 + i] << " ";
+    if (i != 2) {
+      cout << "|";
+    }
+  }
+  cout << endl;
+}
+
+// Print an empty line with dashes and pipes
+void printEmptyLine() { cout << "---|---|---" << endl; }
+
+// Print a visual table in the console
+void printTable(int table[9]) {
+  // For the 3 lines
+  for (int i = 0; i < 3; i++) {
+    printDataLine(i, table);
+    if (i != 2) {
+      printEmptyLine();
+    }
+  }
+}
+
 int main() {
   //   int table[9] = {1, 1, 1, 0, 0, 0, 0, 0, 0}; // 1 is winner
   //   int table[9] = {1, 1, 0, 0, 0, 0, 0, 0, 0}; // 0 is winner
-  //   int table[9] = {1, 0, 1, 1, 1, 0, 1, 0, 0}; // 1 is winner
-  int table[9] = {1, 0, 1, 1, 1, 0, 0, 1, 0}; // no one is winner
+  int table[9] = {1, 0, 1, 1, 1, 0, 1, 0, 0}; // 1 is winner
+  //   int table[9] = {1, 0, 1, 1, 1, 0, 0, 1, 0}; // no one is winner
 
-  cout << getWinner(table) << endl;
+  int winner = getWinner(table);
+
+  cout << endl;
+  printTable(table);
+  cout << endl;
+  cout << "The winner is " << (winner != 3 ? to_string(winner) : " no one")
+       << endl;
 }
