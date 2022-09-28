@@ -5,7 +5,7 @@
 - table: list de 9 valeurs (0;1)
 
 ## Sorties
-- gagnant: le gagnant de la partie (0, 1, null)
+- gagnant: le gagnant de la partie (1, 2, 3)
 
 ## Algorithmes
 1. constante `solutions`: Tableau des 8 solutions (1 solution contient les 2 numéros des cases gagnantes d'une combinaison)
