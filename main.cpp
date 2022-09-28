@@ -28,7 +28,7 @@ int getWinner(int table[]) {
 
 void printDataLine(int lineIndex, int table[9]) {
   for (int i = 0; i < 3; i++) {
-    cout << " " << table[lineIndex * 3 + i] << " ";
+    cout << " " << (table[lineIndex * 3 + i] == 1 ? "X" : "O") << " ";
     if (i != 2) {
       cout << "|";
     }
