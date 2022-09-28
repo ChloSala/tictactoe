@@ -29,9 +29,9 @@
 
 ## Algorithmes
 1. Définir `table` comme vide
-1. Nettoyer l'affichage
 1. `iteration` = 0
 1. Tant qu'il n'y a pas de gagnant (pseudocode "trouver le gagnant")
+   1. Afficher la grille
    1. Afficher "Joueur "
    1. SI `iteration` est pair
       1. Afficher "1: "
@@ -39,10 +39,10 @@
       1. Afficher "2: "
    1. Faire
       1. Prendre la valeur donnée par le joueur 1 et stocker dans `coord`
-   1. Tant que la valeur n'est pas entre 1 et 9 inclus ET que `table` à l'index `coord` n'est pas null
+   1. Tant que la valeur n'est pas entre 1 et 9 inclus ET que `table` à l'index `coord` n'est pas 0
+   1. `coord` = `coord` - 1 (pour passer de 1 à 9, à 0 à 8)
    1. SI `iteration` est pair
-      1. Changer `table` à l'index `coord` à 0
-   1. SINON
       1. Changer `table` à l'index `coord` à 1
-   1. Nettoyer l'affichage
-   1. Afficher la grille
+   1. SINON
+      1. Changer `table` à l'index `coord` à 2
+   
