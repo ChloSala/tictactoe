@@ -80,6 +80,14 @@ void printTable(int table[9]) {
   cout << endl;
 }
 
+void clearScreen() {
+#ifdef _WIN32
+  system("cls"); // windows
+#else
+  system("clear"); // linux
+#endif
+}
+
 int main() {
   //   int table[9] = {1, 1, 1, 0, 0, 0, 0, 0, 0}; // 1 is winner
   //   int table[9] = {1, 1, 0, 0, 0, 0, 0, 0, 0}; // 0 is winner
@@ -93,8 +101,7 @@ int main() {
 
   while (getWinner(table) == 3) {
     iteration++;
-    system("clear"); // linux
-    system("cls");   // windows
+    clearScreen();
     cout << endl;
     printTable(table);
     cout << "Player " << (iteration % 2 == 1 ? "1: " : "2: ");
@@ -113,8 +120,7 @@ int main() {
 
   int winner = getWinner(table);
 
-  system("clear"); // linux
-  system("cls");   // windows
+  clearScreen();
   printTable(table);
 
   cout << endl;
