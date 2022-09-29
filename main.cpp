@@ -67,8 +67,17 @@ void printDataLine(int lineIndex, int table[9]) {
 // Print an empty line with dashes and pipes
 void printEmptyLine() { cout << "---|---|---" << endl; }
 
+void clearScreen() {
+#ifdef _WIN32
+  system("cls"); // windows
+#else
+  system("clear"); // linux
+#endif
+}
+
 // Print a visual table in the console
 void printTable(int table[9]) {
+  clearScreen();
   cout << endl;
   // For the 3 lines
   for (int i = 0; i < 3; i++) {
@@ -78,14 +87,6 @@ void printTable(int table[9]) {
     }
   }
   cout << endl;
-}
-
-void clearScreen() {
-#ifdef _WIN32
-  system("cls"); // windows
-#else
-  system("clear"); // linux
-#endif
 }
 
 int main() {
@@ -101,8 +102,6 @@ int main() {
 
   while (getWinner(table) == 3) {
     iteration++;
-    clearScreen();
-    cout << endl;
     printTable(table);
     cout << "Player " << (iteration % 2 == 1 ? "1: " : "2: ");
 
@@ -113,14 +112,13 @@ int main() {
       } else if (table[coord - 1] != 0) {
         cout << "Case is already taken. Please give a new case: ";
       }
-    } while (coord <= 9 && coord >= 1 && table[coord - 1] != 0);
+    } while (coord > 9 || coord < 1 || table[coord - 1] != 0);
     coord--;
     table[coord] = (iteration % 2 ? 1 : 2);
   }
 
   int winner = getWinner(table);
 
-  clearScreen();
   printTable(table);
 
   cout << endl;
