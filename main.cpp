@@ -1,3 +1,10 @@
+/*
+ * Labo: tictactoe
+ * Release date: TODO
+ * Project: A small implementation in C++ of the game TicTacToe
+ * Authors: Chloé Salamin and Samuel Roland
+ */
+
 #include <iostream>
 #include <string>
 
