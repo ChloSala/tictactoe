@@ -25,7 +25,7 @@
 - `coord`: coordonnée (1 à 9) d'une case à marquer pour le joueur actuel
 
 ## Sorties
-- gagnant: le gagnant de la partie (0, 1, null)
+- gagnant: le gagnant de la partie (1, 2, 3)
 
 ## Algorithmes
 1. Définir `table` comme vide
