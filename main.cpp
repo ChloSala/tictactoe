@@ -10,24 +10,31 @@
 
 using namespace std;
 
-// Get the winner of a given table
+// Get the winner of a given table (1 = player 1, 2 = player 2, 3 = none of
+// them)
 int getWinner(int table[]) {
-  int nbMatch = 0;
+  int nbMatch1 = 0;
+  int nbMatch2 = 0;
   int solutions[][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {1, 4, 7},
                         {2, 5, 8}, {3, 6, 9}, {3, 5, 7}, {1, 5, 9}};
 
   for (int *solution : solutions) {
-    nbMatch = 0;
+    nbMatch1 = 0;
+    nbMatch2 = 0;
     for (int i = 0; i < 3; i++) {
-      if (table[solution[i] - 1] == 0) {
-        nbMatch++;
+      if (table[solution[i] - 1] == 1) {
+        nbMatch1++;
+      }
+      if (table[solution[i] - 1] == 2) {
+        nbMatch2++;
       }
     }
 
-    if (nbMatch == 3) {
-      return 0;
-    } else if (nbMatch == 0) {
+    if (nbMatch1 == 3) {
       return 1;
+    }
+    if (nbMatch2 == 3) {
+      return 2;
     }
   }
   return 3;
@@ -35,7 +42,21 @@ int getWinner(int table[]) {
 
 void printDataLine(int lineIndex, int table[9]) {
   for (int i = 0; i < 3; i++) {
-    cout << " " << (table[lineIndex * 3 + i] == 1 ? "X" : "O") << " ";
+    cout << " ";
+
+    switch (table[lineIndex * 3 + i]) {
+    case 1:
+      cout << "X";
+      break;
+    case 2:
+      cout << "O";
+      break;
+    default:
+      cout << " ";
+      break;
+    }
+    cout << " ";
+
     if (i != 2) {
       cout << "|";
     }
@@ -48,6 +69,7 @@ void printEmptyLine() { cout << "---|---|---" << endl; }
 
 // Print a visual table in the console
 void printTable(int table[9]) {
+  cout << endl;
   // For the 3 lines
   for (int i = 0; i < 3; i++) {
     printDataLine(i, table);
@@ -55,19 +77,49 @@ void printTable(int table[9]) {
       printEmptyLine();
     }
   }
+  cout << endl;
 }
 
 int main() {
   //   int table[9] = {1, 1, 1, 0, 0, 0, 0, 0, 0}; // 1 is winner
   //   int table[9] = {1, 1, 0, 0, 0, 0, 0, 0, 0}; // 0 is winner
-  int table[9] = {1, 0, 1, 1, 1, 0, 1, 0, 0}; // 1 is winner
+  //   int table[9] = {1, 0, 1, 1, 1, 0, 1, 0, 0}; // 1 is winner
   //   int table[9] = {1, 0, 1, 1, 1, 0, 0, 1, 0}; // no one is winner
+  // int table[9] = {1, 1, 1, 0, 0, 0, 0, 0, 0}; // 1 is winner
+
+  int table[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+  int coord;
+  int iteration = 0;
+
+  while (getWinner(table) == 3) {
+    iteration++;
+    system("clear"); // linux
+    system("cls");   // windows
+    cout << endl;
+    printTable(table);
+    cout << "Player " << (iteration % 2 == 1 ? "1: " : "2: ");
+
+    do {
+      cin >> coord;
+      if (coord > 9 || coord < 1) {
+        cout << "The case number must be between 1 and 9. Try again: ";
+      } else if (table[coord - 1] != 0) {
+        cout << "Case is already taken. Please give a new case: ";
+      }
+    } while (coord <= 9 && coord >= 1 && table[coord - 1] != 0);
+    coord--;
+    table[coord] = (iteration % 2 ? 1 : 2);
+  }
 
   int winner = getWinner(table);
 
-  cout << endl;
+  system("clear"); // linux
+  system("cls");   // windows
   printTable(table);
+
   cout << endl;
-  cout << "The winner is " << (winner != 3 ? to_string(winner) : " no one")
+  cout << endl;
+  cout << "The winner is "
+       << (winner != 3 ? "player " + to_string(winner) + " !" : " no one")
        << endl;
 }
