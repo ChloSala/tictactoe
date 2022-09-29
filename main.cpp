@@ -38,6 +38,7 @@ int getWinner(int table[]) {
 	return 3;
 }
 
+// Print a line of data of the table (with X O or " ")
 void printDataLine(int lineIndex, int table[9]) {
 	for (int i = 0; i < 3; i++) {
 		cout << " ";
@@ -65,6 +66,7 @@ void printDataLine(int lineIndex, int table[9]) {
 // Print an empty line with dashes and pipes
 void printEmptyLine() { cout << "---|---|---" << endl; }
 
+// Clear the screen (with cls or clear, depending on the OS)
 void clearScreen() {
 #ifdef _WIN32
 	system("cls"); // windows
@@ -88,16 +90,18 @@ void printTable(int table[9]) {
 }
 
 int main() {
-	//   int table[9] = {1, 1, 1, 0, 0, 0, 0, 0, 0}; // 1 is winner
-	//   int table[9] = {1, 1, 0, 0, 0, 0, 0, 0, 0}; // 0 is winner
-	//   int table[9] = {1, 0, 1, 1, 1, 0, 1, 0, 0}; // 1 is winner
-	//   int table[9] = {1, 0, 1, 1, 1, 0, 0, 1, 0}; // no one is winner
+	// Testing samples
+	// int table[9] = {1, 1, 1, 0, 0, 0, 0, 0, 0}; // 1 is winner
+	// int table[9] = {1, 1, 0, 0, 0, 0, 0, 0, 0}; // 0 is winner
+	// int table[9] = {1, 0, 1, 1, 1, 0, 1, 0, 0}; // 1 is winner
+	// int table[9] = {1, 0, 1, 1, 1, 0, 0, 1, 0}; // no one is winner
 	// int table[9] = {1, 1, 1, 0, 0, 0, 0, 0, 0}; // 1 is winner
 
 	int table[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
 	int coord;
 	int iteration = 0;
 
+	// While there is not winner, ask for another case
 	while (getWinner(table) == 3) {
 		iteration++;
 		printTable(table);
