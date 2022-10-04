@@ -17,7 +17,7 @@ int getWinner(int table[]) {
 	const int NB_CASES = 3;
 	const int solutions[][NB_CASES] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {1, 4, 7}, {2, 5, 8}, {3, 6, 9}, {3, 5, 7}, {1, 5, 9}};
 
-	for (int *solution : solutions) {
+	for (const int *solution : solutions) {
 		nbMatch1 = 0;
 		nbMatch2 = 0;
 		const int PLAYER_1 = 1;
@@ -111,7 +111,8 @@ int main() {
 		cout << "Player " << (iteration % 2 == 1 ? "1: " : "2: ");
 
 		do {
-			cin >> coord--;
+			cin >> coord;
+			coord--;
 			if (coord > 8 || coord < 0) {
 				cout << "The case number must be between 1 and 9. Try again: ";
 			} else if (table[coord] != 0) {
