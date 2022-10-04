@@ -102,7 +102,7 @@ int main() {
 	int iteration = 0;
 
 	// While there is not winner, ask for another case
-	while (getWinner(table) == 3) {
+	while (getWinner(table) == 3 && iteration < 9) {
 		iteration++;
 		printTable(table);
 		cout << "Player " << (iteration % 2 == 1 ? "1: " : "2: ");
@@ -126,6 +126,6 @@ int main() {
 	cout << endl;
 	cout << endl;
 	cout << "The winner is "
-	     << (winner != 3 ? "player " + to_string(winner) + " !" : " no one")
+	     << (winner != 3 ? "player " + to_string(winner) + " !" : "no one")
 	     << endl;
 }
