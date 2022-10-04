@@ -14,7 +14,8 @@ using namespace std;
 int getWinner(int table[]) {
 	int nbMatch1 = 0;
 	int nbMatch2 = 0;
-	int solutions[][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {1, 4, 7}, {2, 5, 8}, {3, 6, 9}, {3, 5, 7}, {1, 5, 9}};
+	const int NB_CASES = 3;
+	int solutions[][NB_CASES] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {1, 4, 7}, {2, 5, 8}, {3, 6, 9}, {3, 5, 7}, {1, 5, 9}};
 
 	for (int *solution : solutions) {
 		nbMatch1 = 0;
