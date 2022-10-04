@@ -10,21 +10,23 @@
 
 using namespace std;
 
-// Get the winner of a given table (1 = player 1, 2 = player 2, 3 = none of them)
+// Get the winner of a given table (1 = player 1, 2 = player 2, 0 = none of them)
 int getWinner(int table[]) {
 	int nbMatch1 = 0;
 	int nbMatch2 = 0;
 	const int NB_CASES = 3;
-	int solutions[][NB_CASES] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {1, 4, 7}, {2, 5, 8}, {3, 6, 9}, {3, 5, 7}, {1, 5, 9}};
+	const int solutions[][NB_CASES] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {1, 4, 7}, {2, 5, 8}, {3, 6, 9}, {3, 5, 7}, {1, 5, 9}};
 
 	for (int *solution : solutions) {
 		nbMatch1 = 0;
 		nbMatch2 = 0;
+		const int PLAYER_1 = 1;
+		const int PLAYER_2 = 2;
 		for (int i = 0; i < 3; i++) {
-			if (table[solution[i] - 1] == 1) {
+			if (table[solution[i] - 1] == PLAYER_1) {
 				nbMatch1++;
 			}
-			if (table[solution[i] - 1] == 2) {
+			if (table[solution[i] - 1] == PLAYER_2) {
 				nbMatch2++;
 			}
 		}
@@ -109,14 +111,13 @@ int main() {
 		cout << "Player " << (iteration % 2 == 1 ? "1: " : "2: ");
 
 		do {
-			cin >> coord;
-			if (coord > 9 || coord < 1) {
+			cin >> coord--;
+			if (coord > 8 || coord < 0) {
 				cout << "The case number must be between 1 and 9. Try again: ";
-			} else if (table[coord - 1] != 0) {
+			} else if (table[coord] != 0) {
 				cout << "Case is already taken. Please give a new case: ";
 			}
-		} while (coord > 9 || coord < 1 || table[coord - 1] != 0);
-		coord--;
+		} while (coord > 8 || coord < 0 || table[coord] != 0);
 		table[coord] = (iteration % 2 ? 1 : 2);
 	}
 
